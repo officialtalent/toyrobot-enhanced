@@ -32,6 +32,7 @@ public abstract class Command {
         return switch (args[0]) {
             case "shutdown", "off" -> new ShutdownCommand();
             case "forward" -> new ForwardCommand(args[1]);
+            case "help" -> new HelpCommand();
             default -> throw new IllegalArgumentException("Unsupported command " + instruction);
         };
     }

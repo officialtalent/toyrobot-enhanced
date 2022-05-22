@@ -1,5 +1,7 @@
 package com.devhouseagency.toyrobot;
 
+import com.devhouseagency.toyrobot.command.Command;
+
 public class Robot {
     /*
     * These are constraints of our robot. It cannot go beyond these
@@ -30,6 +32,27 @@ public class Robot {
         this.status = "Ready.";
         this.position = CENTER;
         this.currentDirection = Direction.UP;
+    }
+
+    public boolean handleCommand(Command command) {
+        return command.execute(this);
+    }
+
+    public boolean updatePosition(int nrSteps) {
+        int newX = position.getX();
+        int newY = position.getY();
+
+        if (currentDirection.equals(Direction.UP)) {
+            newY = newY + nrSteps;
+        }
+
+        Position newPosition = new Position(newX, newY);
+        if (newPosition.isIn(TOP_LEFT, BOTTOM_RIGHT)) {
+            position = newPosition;
+            return true;
+        }
+
+        return false;
     }
 
     public String getName() {
