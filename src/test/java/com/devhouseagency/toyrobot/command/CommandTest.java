@@ -20,6 +20,13 @@ public class CommandTest {
     }
 
     @Test
+    void createBack10() {
+        Command test = Command.create("back 10");
+        assertEquals("back", test.getName());
+        assertEquals("10", test.getArgument());
+    }
+
+    @Test
     void unsupportedCommand() {
         String exception = "";
         try {
