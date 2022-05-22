@@ -48,6 +48,10 @@ public class Robot {
             newY = newY + nrSteps;
         } else if (currentDirection.equals(Direction.RIGHT)) {
             newX = newX + nrSteps;
+        } else if (currentDirection.equals(Direction.LEFT)) {
+            newX = newX - nrSteps;
+        } else if (currentDirection.equals(Direction.DOWN)) {
+            newY = newY - nrSteps;
         }
 
         Position newPosition = new Position(newX, newY);
