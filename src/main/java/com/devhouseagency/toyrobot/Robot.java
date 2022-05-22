@@ -25,12 +25,14 @@ public class Robot {
     private String status;
 
     private Position position;
+    private int directionIndex;
     private Direction currentDirection;
 
     public Robot(String name) {
         this.name = name;
         this.status = "Ready.";
         this.position = CENTER;
+        this.directionIndex = 0;
         this.currentDirection = Direction.UP;
     }
 
@@ -73,6 +75,28 @@ public class Robot {
 
     public void setPosition(Position position) {
         this.position = position;
+    }
+
+    public int getDirectionIndex() {
+        return directionIndex;
+    }
+
+    public void setDirectionIndex(int directionIndex) {
+        this.directionIndex = directionIndex;
+    }
+
+    public void increaseDirectionIndex() {
+        if (this.getDirectionIndex() < 3)
+            this.directionIndex++;
+        else
+            setDirectionIndex(0);
+    }
+
+    public void decreaseIndexDirection() {
+        if (this.getDirectionIndex() > 0)
+            this.directionIndex--;
+        else
+            setDirectionIndex(3);
     }
 
     public Direction getCurrentDirection() {
