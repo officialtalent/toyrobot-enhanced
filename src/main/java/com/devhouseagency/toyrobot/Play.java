@@ -5,7 +5,11 @@ import com.devhouseagency.toyrobot.command.Command;
 import java.util.Scanner;
 
 public class Play {
+    private static Scanner scanner;
+
     public static void main(String[] args) {
+        scanner = new Scanner(System.in);
+
         Robot robot;
         String name = input("What do you want to name your robot?");
         robot = new Robot(name);
@@ -32,8 +36,6 @@ public class Play {
     }
 
     private static String input(String prompt) {
-        Scanner scanner = new Scanner(System.in);
-
         System.out.println(prompt);
         return scanner.nextLine();
     }

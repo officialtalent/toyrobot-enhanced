@@ -2,7 +2,9 @@ package com.devhouseagency.toyrobot;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -29,5 +31,16 @@ public class PlayTest {
         for (int i = actual.length - 1, j = expected.length - 1; j > 0; i--, j--) {
             assertEquals(expected[j], actual[i]);
         }
+    }
+
+    @Test
+    void testOff() {
+        InputStream mocked = new ByteArrayInputStream("HAL\noff\n".getBytes());
+        System.setIn(mocked);
+        Play.main(new String[] {});
+
+        String[] actual = osc.toString().trim().split("\n");
+        String[] expected = {""};
+        verifyOutput(actual, expected);
     }
 }
