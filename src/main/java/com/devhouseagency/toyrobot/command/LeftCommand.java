@@ -10,6 +10,7 @@ public class LeftCommand extends Command{
 
     @Override
     public boolean execute(Robot target) {
+        target.setShouldPrint(true);
         Direction[] directions = Direction.values();
 
         target.decreaseIndexDirection();

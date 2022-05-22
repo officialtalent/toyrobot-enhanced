@@ -9,6 +9,7 @@ public class ShutdownCommand extends Command {
 
     @Override
     public boolean execute(Robot target) {
+        target.setShouldPrint(true);
         target.setStatus("bye");
         return false;
     }

@@ -9,6 +9,7 @@ public class HelpCommand extends Command {
 
     @Override
     public boolean execute(Robot target) {
+        target.setShouldPrint(true);
         return true;
     }
 }

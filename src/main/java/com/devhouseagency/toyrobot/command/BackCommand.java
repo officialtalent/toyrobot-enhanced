@@ -9,6 +9,7 @@ public class BackCommand extends Command {
 
     @Override
     public boolean execute(Robot target) {
+        target.setShouldPrint(true);
         int nrSteps = Integer.parseInt(getArgument());
 
         if (target.updatePosition(-nrSteps)) {
