@@ -27,6 +27,18 @@ public class CommandTest {
     }
 
     @Test
+    void createRight() {
+        Command test = Command.create("right");
+        assertEquals("right", test.getName());
+    }
+
+    @Test
+    void createLeft() {
+        Command test = Command.create("left");
+        assertEquals("left", test.getName());
+    }
+
+    @Test
     void unsupportedCommand() {
         String exception = "";
         try {
