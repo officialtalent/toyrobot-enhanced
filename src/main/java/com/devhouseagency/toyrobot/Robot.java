@@ -28,6 +28,8 @@ public class Robot {
     private int directionIndex;
     private Direction currentDirection;
 
+    private boolean shouldPrint = true;
+
     public Robot(String name) {
         this.name = name;
         this.status = "Ready.";
