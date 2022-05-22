@@ -70,4 +70,32 @@ public class RobotTest {
         String output = robot.toString();
         assertEquals("[0,0] TALENT> Ready.", output);
     }
+
+    @Test
+    void increaseDirectionIndex() {
+        Robot robot = new Robot("TALENT");
+        assertEquals(0, robot.getDirectionIndex());
+
+        robot.increaseDirectionIndex();
+        assertEquals(1, robot.getDirectionIndex());
+
+        for (int i = 0; i < 6; i++) {
+            robot.increaseDirectionIndex();
+        }
+        assertEquals(3, robot.getDirectionIndex());
+    }
+
+    @Test
+    void decreaseDirectionIndex() {
+        Robot robot = new Robot("TALENT");
+        assertEquals(0, robot.getDirectionIndex());
+
+        robot.decreaseIndexDirection();
+        assertEquals(3, robot.getDirectionIndex());
+
+        for (int i = 0; i < 3; i++) {
+            robot.decreaseIndexDirection();
+        }
+        assertEquals(0, robot.getDirectionIndex());
+    }
 }
