@@ -29,6 +29,13 @@ public class Position {
         return this.y == position.y;
     }
 
+    /**
+     * Checks if a position is in the bounds of the topLeft corner
+     * and bottomRight corner.
+     * @param topLeft is the top left bound of the area.
+     * @param bottomRight is the bottom right bound of the area.
+     * @return true if the position is within the bounds.
+     * */
     public boolean isIn(Position topLeft, Position bottomRight) {
         boolean withinTop    = this.y <= topLeft.getY();
         boolean withinBottom = this.y >= bottomRight.getY();
