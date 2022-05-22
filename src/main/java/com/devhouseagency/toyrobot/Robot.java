@@ -115,9 +115,13 @@ public class Robot {
         this.currentDirection = currentDirection;
     }
 
+    public void setShouldPrint(boolean shouldPrint) {
+        this.shouldPrint = shouldPrint;
+    }
+
     @Override
     public String toString() {
-        return "["+position.getX()+","+position.getY()+"] " +
-                name + "> " + status;
+        return shouldPrint ? "["+position.getX()+","+position.getY()+"] " +
+                name + "> " + status : status;
     }
 }
