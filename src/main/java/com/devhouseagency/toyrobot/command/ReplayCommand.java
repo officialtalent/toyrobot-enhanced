@@ -7,17 +7,13 @@ public class ReplayCommand extends Command {
         super("replay", argument);
     }
 
-    public void handleCommand(String argument) {
-        String[] args = argument.split(" ");
-
-        if (args.length == 1) {
-            System.out.println(argument);
-        }
+    public void handleCommand(Robot robot) {
+        String[] args = getArgument().split(" ");
     }
 
     @Override
     public boolean execute(Robot target) {
-        System.out.println(getArgument());
+        handleCommand(target);
         return true;
     }
 }

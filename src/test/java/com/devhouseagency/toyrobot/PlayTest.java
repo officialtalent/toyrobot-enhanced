@@ -1,57 +1,71 @@
 package com.devhouseagency.toyrobot;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.PrintStream;
+import java.io.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PlayTest {
-    private final PrintStream standardOut = System.out;
-    private final InputStream standardIn  = System.in;
-    private final ByteArrayOutputStream osc = new ByteArrayOutputStream();
+    private void simulateGame(String simulatedUserInput, String expectedLastLine) {
+        InputStream mockedInput = new ByteArrayInputStream(simulatedUserInput.getBytes());
+        System.setIn(mockedInput);
 
-    @BeforeEach
-    public void setUp() {
+        ByteArrayOutputStream osc = new ByteArrayOutputStream();
         System.setOut(new PrintStream(osc));
-    }
 
-    @AfterEach
-    public void tearDown() {
-        System.setOut(standardOut);
-        System.setIn(standardIn);
-    }
+        Play.main(new String[]{});
 
-    private void verifyOutput(String[] actual, String[] expected) {
-        for (int i = actual.length - 1, j = expected.length - 1; j > 0; i--, j--) {
-            assertEquals(expected[j], actual[i]);
+        String[] linesOutput = osc.toString().trim().split("\n");
+
+        StringBuilder output = new StringBuilder();
+        for (String line : linesOutput) {
+            output.append(line).append("\n");
         }
+
+        assertEquals(expectedLastLine, output.toString().trim());
     }
 
     @Test
     void testOff() {
-        InputStream mocked = new ByteArrayInputStream("HAL\noff\n".getBytes());
-        System.setIn(mocked);
-        Play.main(new String[] {});
+        String mockedInput = "HAL\noff\n";
+        String expected = """
+                What do you want to name your robot?
+                Hello kiddo!
+                [0,0] HAL> Ready.
+                HAL> What must I do next?
+                [0,0] HAL> bye""";
 
-        String[] act = osc.toString().trim().split("\n");
-        String[] exp = {""};
-        verifyOutput(act, exp);
+        simulateGame(mockedInput, expected);
     }
 
     @Test
     void testInvalidCommand() {
-        InputStream mocked = new ByteArrayInputStream("HAL\ninvalid\noff\n".getBytes());
-        System.setIn(mocked);
-        Play.main(new String[] {});
+        String mockedInput = "HAL\ninvalid\noff\n";
+        String expected = """
+                What do you want to name your robot?
+                Hello kiddo!
+                [0,0] HAL> Ready.
+                HAL> What must I do next?
+                [0,0] HAL> Sorry, I did not understand 'invalid'.
+                HAL> What must I do next?
+                [0,0] HAL> bye""";
 
-        String[] actual = osc.toString().trim().split("\n");
-        String[] expected = {""};
-        verifyOutput(actual, expected);
+        simulateGame(mockedInput, expected);
+    }
+
+    @Test
+    void testForwardCorrect() {
+        String mockedInput = "HAL\nforward 10\noff\n";
+        String expected = """
+                What do you want to name your robot?
+                Hello kiddo!
+                [0,0] HAL> Ready.
+                HAL> What must I do next?
+                [0,10] HAL> Moved forward by 10 steps.
+                HAL> What must I do next?
+                [0,10] HAL> bye""";
+
+        simulateGame(mockedInput, expected);
     }
 }
