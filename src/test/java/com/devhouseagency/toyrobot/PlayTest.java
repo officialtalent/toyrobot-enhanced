@@ -8,7 +8,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -40,10 +39,9 @@ public class PlayTest {
         System.setIn(mocked);
         Play.main(new String[] {});
 
-        String[] actual = osc.toString().trim().split("\n");
-        System.out.println(Arrays.toString(actual));
-        String[] expected = {""};
-        verifyOutput(actual, expected);
+        String[] act = osc.toString().trim().split("\n");
+        String[] exp = {""};
+        verifyOutput(act, exp);
     }
 
     @Test

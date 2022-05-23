@@ -37,6 +37,7 @@ public abstract class Command {
             case "right" -> new RightCommand();
             case "left" -> new LeftCommand();
             case "sprint" -> new SprintCommand(args[1]);
+            case "replay" -> new ReplayCommand(args.length > 1 ? args[2] : "");
             default -> throw new IllegalArgumentException("Unsupported command " + instruction);
         };
     }
