@@ -115,6 +115,10 @@ public class Robot {
         this.currentDirection = currentDirection;
     }
 
+    public void storeHistory(History history) {
+
+    }
+
     public void setShouldPrint(boolean shouldPrint) {
         this.shouldPrint = shouldPrint;
     }
