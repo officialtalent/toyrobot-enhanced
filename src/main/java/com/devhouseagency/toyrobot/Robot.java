@@ -115,8 +115,8 @@ public class Robot {
         this.currentDirection = currentDirection;
     }
 
-    public void storeHistory(History history) {
-
+    public void storeHistory(History history, String instruction) {
+        history.addToHistory(instruction);
     }
 
     public void setShouldPrint(boolean shouldPrint) {

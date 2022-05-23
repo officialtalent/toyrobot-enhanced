@@ -19,9 +19,11 @@ public class Play {
 
         Command command;
         boolean shouldContinue = true;
+        History history = new History();
 
         do {
             String instruction = input(robot.getName()+"> What must I do next?");
+            robot.storeHistory(history, instruction);
 
             try {
                 command = Command.create(instruction);

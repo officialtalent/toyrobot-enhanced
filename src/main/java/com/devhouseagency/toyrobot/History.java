@@ -4,18 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class History {
-    private final List<String> moves = List.of(
-            "forward",
-            "back",
-            "left",
-            "right",
-            "sprint"
-    );
-
-    private final List<String> history;
+    private final List<String> moves;
+    private static final List<String> history = new ArrayList<>();
 
     public History() {
-        this.history = new ArrayList<>();
+        this.moves = List.of(
+                "forward",
+                "back",
+                "left",
+                "right",
+                "sprint"
+        );
     }
 
     public void addToHistory(String instruction) {
