@@ -2,6 +2,7 @@ package com.devhouseagency.toyrobot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class History {
     private final List<String> moves;
@@ -28,6 +29,6 @@ public class History {
     public List<String> getReplayableHistory() {
         return history.stream()
                 .filter(command -> moves.contains(command.split(" ")[0]))
-                .toList();
+                .collect(Collectors.toList());
     }
 }
